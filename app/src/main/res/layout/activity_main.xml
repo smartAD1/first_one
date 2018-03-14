@@ -7,6 +7,17 @@
     tools:context="com.example.admin.first_one.page.MainActivity"
     android:background="#335"
     >
+
+    <!--<ProgressBar-->
+        <!--android:id="@+id/progressBar"-->
+        <!--style="?android:attr/progressBarStyle"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center_vertical"-->
+        <!--tools:layout_editor_absoluteX="170dp"-->
+        <!--tools:layout_editor_absoluteY="230dp"-->
+        <!--tools:ignore="MissingConstraints" />-->
+
     <com.youth.banner.Banner xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/banner"
         android:layout_width="350dp"

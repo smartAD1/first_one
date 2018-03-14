@@ -2,6 +2,7 @@ package com.example.admin.first_one.utils;
 
 import android.content.Intent;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.example.admin.first_one.adapter.MyArrayAdapter;
 import com.example.admin.first_one.model.MyModel;
@@ -26,4 +27,5 @@ public class Static_activities {
     public static ListView listView;
     public static ArrayList<MyModel> list_model;
     public static MyArrayAdapter myArrayAdapter;
+    public static ProgressBar progressBar;
 }

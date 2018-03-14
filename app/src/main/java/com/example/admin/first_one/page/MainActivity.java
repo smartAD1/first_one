@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.admin.first_one.LoginActivity;
@@ -29,13 +30,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import static com.example.admin.first_one.utils.Static_activities.banner;
-import static com.example.admin.first_one.utils.Static_activities.intent;
-import static com.example.admin.first_one.utils.Static_activities.jsonObject;
-import static com.example.admin.first_one.utils.Static_activities.list;
-import static com.example.admin.first_one.utils.Static_activities.listView;
-import static com.example.admin.first_one.utils.Static_activities.list_model;
-import static com.example.admin.first_one.utils.Static_activities.myArrayAdapter;
+import static com.example.admin.first_one.utils.Static_activities.*;
+
 
 public class MainActivity extends AppCompatActivity implements OnBannerListener {
 
@@ -44,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements OnBannerListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        progressBar = (ProgressBar)findViewById(R.id.progressBar);
         banner = (Banner) findViewById(R.id.banner);
         banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
         banner.setImageLoader(new GlideImageLoader());
@@ -111,10 +108,33 @@ public class MainActivity extends AppCompatActivity implements OnBannerListener 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            /*ProgressDialog版本*/
             dialog = new ProgressDialog(MainActivity.this);
             dialog.setTitle("Hey Wait Please...");
             dialog.setMessage("I am getting your JSON");
+            dialog.setProgress(100);
+            dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+            new Thread(new Runnable() {
+                int i = 0;
+                @Override
+                public void run() {
+                    try{
+                        while (i <= 100) {
+                            // 由线程来控制进度。
+                            dialog.setProgress(i ++);
+                            Thread.sleep(3);
+                        }
+                        dialog.cancel();
+                    }
+                    catch (InterruptedException e){
+                        dialog.cancel();
+                    }
+                }
+            }).start();
             dialog.show();
+            /*ProgressDialog版本*/
+            listView.setVisibility(View.GONE);
+
         }
 
         @Override
@@ -158,6 +178,7 @@ public class MainActivity extends AppCompatActivity implements OnBannerListener 
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             dialog.dismiss();
+            listView.setVisibility(View.VISIBLE);
             if (list_model.size() > 0) {
                 myArrayAdapter.notifyDataSetChanged();
             } else {
