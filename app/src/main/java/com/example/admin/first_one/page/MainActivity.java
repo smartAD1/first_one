@@ -71,7 +71,6 @@ public class MainActivity extends AppCompatActivity implements OnBannerListener 
 
     @Override
     public void OnBannerClick(int position) {
-//                banner.setBannerAnimation(transformers.get(position));
         Toast.makeText(getApplicationContext(), "點擊：" + position, Toast.LENGTH_SHORT).show();
         switch (position) {
             case 0:
@@ -109,30 +108,31 @@ public class MainActivity extends AppCompatActivity implements OnBannerListener 
         protected void onPreExecute() {
             super.onPreExecute();
             /*ProgressDialog版本*/
-            dialog = new ProgressDialog(MainActivity.this);
-            dialog.setTitle("Hey Wait Please...");
-            dialog.setMessage("I am getting your JSON");
-            dialog.setProgress(100);
-            dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-            new Thread(new Runnable() {
-                int i = 0;
-                @Override
-                public void run() {
-                    try{
-                        while (i <= 100) {
-                            // 由线程来控制进度。
-                            dialog.setProgress(i ++);
-                            Thread.sleep(3);
-                        }
-                        dialog.cancel();
-                    }
-                    catch (InterruptedException e){
-                        dialog.cancel();
-                    }
-                }
-            }).start();
-            dialog.show();
+//            dialog = new ProgressDialog(MainActivity.this);
+//            dialog.setTitle("Hey Wait Please...");
+//            dialog.setMessage("I am getting your JSON");
+//            dialog.setProgress(100);
+//            dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+//            new Thread(new Runnable() {
+//                int i = 0;
+//                @Override
+//                public void run() {
+//                    try{
+//                        while (i <= 100) {
+//                            // 由线程来控制进度。
+//                            dialog.setProgress(i ++);
+//                            Thread.sleep(1000);
+//                        }
+//                        dialog.cancel();
+//                    }
+//                    catch (InterruptedException e){
+//                        dialog.cancel();
+//                    }
+//                }
+//            }).start();
+//            dialog.show();
             /*ProgressDialog版本*/
+            banner.setBannerStyle(BannerConfig.NOT_INDICATOR);
             listView.setVisibility(View.GONE);
 
         }
@@ -177,7 +177,8 @@ public class MainActivity extends AppCompatActivity implements OnBannerListener 
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            dialog.dismiss();
+//            dialog.dismiss();
+            progressBar.setVisibility(View.GONE);
             listView.setVisibility(View.VISIBLE);
             if (list_model.size() > 0) {
                 myArrayAdapter.notifyDataSetChanged();
