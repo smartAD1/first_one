@@ -8,8 +8,10 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
@@ -33,7 +35,7 @@ public class JSONParser {
         Request request = new Request.Builder().url(URL).build();
             response = okHttpClient.newCall(request).execute();
             return new JSONObject(response.body().string());
-        } catch (IOException |JSONException e) {
+        } catch (@NonNull IOException |JSONException e) {
             Log.e(TAG, "" + e.getLocalizedMessage());
         }
         return null;

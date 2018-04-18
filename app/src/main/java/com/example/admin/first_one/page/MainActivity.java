@@ -12,6 +12,8 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.admin.first_one.LoginActivity;
 import com.example.admin.first_one.R;
 import com.example.admin.first_one.adapter.MyArrayAdapter;
@@ -152,6 +154,7 @@ public class MainActivity extends AppCompatActivity implements OnBannerListener 
                                 String name = innerObject.getString(keys.KEY_NAME);
                                 String email = innerObject.getString(keys.KEY_EMAIL);
                                 String image = innerObject.getString(keys.KEY_PROFILE_PIC);
+
                              /*phone*/
                                 JSONObject phoneObj = innerObject.getJSONObject(keys.KEY_PHONE);
                                 String phone = phoneObj.getString(keys.KEY_MOBILE);
@@ -159,6 +162,7 @@ public class MainActivity extends AppCompatActivity implements OnBannerListener 
                                 myModel.setEmail(email);
                                 myModel.setPhone(phone);
                                 myModel.setImage(image);
+
                             /*新增List*/
                                 list_model.add(myModel);
                             }

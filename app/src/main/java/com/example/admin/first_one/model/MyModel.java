@@ -11,36 +11,43 @@ public class MyModel {
     private String email;
     private String phone;
 
-    public int getId(){
+    public int getId() {
         return id;
     }
-    public void setId(int id){
+
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
-    public void setName(String name){
+
+    public void setName(String name) {
         this.name = name;
     }
 
-    public String getImage(){
+    public String getImage() {
         return image;
     }
-    public void setImage(String image){
-        this.image=image;
+
+    public void setImage(String image) {
+        this.image = image;
     }
-    public String getEmail(){
+
+    public String getEmail() {
         return email;
     }
-    public void setEmail(String email){
+
+    public void setEmail(String email) {
         this.email = email;
     }
-    public String getPhone(){
+
+    public String getPhone() {
         return phone;
     }
-    public void setPhone(String phone){
-        this.phone=phone;
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }
